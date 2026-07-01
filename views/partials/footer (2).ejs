@@ -1,0 +1,288 @@
+  </main><!-- /#main-content -->
+
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <!-- Newsletter + Helpline top strip -->
+      <div class="footer-top" style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:48px;">
+        <div>
+          <p style="font-family:var(--display);font-weight:700;font-size:16px;color:var(--text);margin-bottom:4px;">Stay in the loop</p>
+          <p style="font-size:13.5px;color:rgba(255,255,255,0.5);">Monthly updates on programs, campaigns, and how your support is landing.</p>
+          <!-- TODO(backend): POST /api/newsletter — store email in MongoDB `subscribers` collection -->
+          <form class="footer-newsletter" aria-label="Newsletter signup" onsubmit="handleNewsletterSignup(event)">
+            <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Email address</label>
+            <input id="nl-email" type="email" placeholder="your@email.com" required autocomplete="email" />
+            <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+          </form>
+        </div>
+        <div class="helpline-strip" role="status">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Helpline: <a href="tel:+919764439124" style="color:var(--coral);text-decoration:none;">+91 97644 39124</a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <!-- Brand col -->
+        <div>
+          <a href="/" class="brand" aria-label="A Ray of Hope home">
+            <div class="brand-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="10" r="4" fill="currentColor" stroke="none" opacity="0.9"/>
+                <line x1="12" y1="2" x2="12" y2="5"/><line x1="4.5" y1="5.5" x2="6.5" y2="7.5"/>
+                <line x1="19.5" y1="5.5" x2="17.5" y2="7.5"/>
+                <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+                <line x1="3" y1="22" x2="21" y2="22" stroke-width="1.5"/>
+              </svg>
+            </div>
+            A Ray of Hope
+          </a>
+          <p class="mission">A child-first movement powered by ordinary people. No child should have to choose between a meal and a childhood.</p>
+          <!-- Social links -->
+          <div style="display:flex;gap:12px;margin-top:20px;" aria-label="Social media links">
+            <a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);display:grid;place-items:center;color:rgba(255,255,255,0.55);transition:all 0.25s;" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube" style="width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);display:grid;place-items:center;color:rgba(255,255,255,0.55);transition:all 0.25s;" onmouseover="this.style.borderColor='var(--coral)';this.style.color='var(--coral)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter / X" style="width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);display:grid;place-items:center;color:rgba(255,255,255,0.55);transition:all 0.25s;" onmouseover="this.style.borderColor='var(--teal)';this.style.color='var(--teal)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"/></svg>
+            </a>
+            <a href="mailto:vedanttdmore@gmail.com" aria-label="Email us" style="width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);display:grid;place-items:center;color:rgba(255,255,255,0.55);transition:all 0.25s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.55)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4V4z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Programs col -->
+        <nav aria-label="Programs">
+          <h5>Programs</h5>
+          <ul>
+            <li><a href="/donate">Feed a Child</a></li>
+            <li><a href="/donate">Education Fund</a></li>
+            <li><a href="/donate">Medical Camps</a></li>
+            <li><a href="/donate">Clothes Drive</a></li>
+            <li><a href="/donate">Grain & Food</a></li>
+          </ul>
+        </nav>
+
+        <!-- Quick Links col -->
+        <nav aria-label="Quick links">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="/#about">Our Cause</a></li>
+            <li><a href="/#impact">Transparency</a></li>
+            <li><a href="/#trust">Why Trust Us</a></li>
+            <li><a href="/#stories">Stories</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/volunteer">Volunteer</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contact col -->
+        <div>
+          <h5>Contact</h5>
+          <div class="footer-contact" role="list">
+            <a href="mailto:vedanttdmore@gmail.com" role="listitem">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4V4z"/><path d="M22 6l-10 7L2 6"/></svg>
+              vedanttdmore@gmail.com
+            </a>
+            <a href="tel:+919764439124" role="listitem">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +91 97644 39124
+            </a>
+            <span role="listitem">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Near Ranka Jewellers,<br>Chinchwad, Pune 411033
+            </span>
+            <span role="listitem" style="font-size:13px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon–Sat, 9 AM – 6 PM IST
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <span>&copy; 2026 A Ray of Hope Foundation &middot; Registered Non-Profit</span>
+        <div class="footer-legal">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
+          <a href="/#trust">Transparency</a>
+        </div>
+        <span style="font-size:12px;">Built with hope &middot; Every child deserves a tomorrow</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie consent banner -->
+  <div id="cb" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;background:#fff;border:1.5px solid #E8E4F0;border-radius:16px;padding:14px 20px;align-items:center;gap:16px;box-shadow:0 20px 60px rgba(26,26,46,0.12);max-width:560px;width:calc(100% - 32px);">
+    <p style="font-size:13.5px;color:#4A4A6A;margin:0;flex:1;">We use cookies to improve your experience. <a href="/privacy" style="color:#FF5C1A;">Learn more</a></p>
+    <button onclick="document.getElementById('cb').style.display='none'" style="background:linear-gradient(135deg,#FF5C1A,#F5A623);border:none;border-radius:100px;padding:9px 18px;color:#fff;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">Accept</button>
+    <button onclick="document.getElementById('cb').style.display='none'" style="background:none;border:none;color:#8888AA;cursor:pointer;font-size:22px;line-height:1;padding:0 4px;">&times;</button>
+  </div>
+  <script>
+    (function() {
+      var b = document.getElementById('cb');
+      if (!b) return;
+      try {
+        if (localStorage.getItem('cb')) return;
+      } catch(e) {}
+      setTimeout(function() {
+        b.style.display = 'flex';
+        // Patch accept button to also save preference
+        b.querySelectorAll('button').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            try { localStorage.setItem('cb','1'); } catch(e) {}
+            b.style.display = 'none';
+          });
+        });
+      }, 1500);
+    })();
+  </script>
+
+  <script>
+    // ---------- Sticky nav ----------
+    var nav = document.getElementById('nav');
+    function onScroll() { nav.classList.toggle('solid', window.scrollY > 40); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---------- Mobile menu ----------
+    var burger = document.getElementById('burger');
+    var mm = document.getElementById('mobileMenu');
+    var mClose = document.getElementById('mobileClose');
+    if (burger && mm) {
+      function openMenu() {
+        mm.removeAttribute('hidden');
+        mm.classList.add('open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        mClose && mClose.focus();
+      }
+      function closeMenu() {
+        mm.classList.remove('open');
+        setTimeout(function () { mm.setAttribute('hidden', ''); }, 400);
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      burger.addEventListener('click', openMenu);
+      mClose && mClose.addEventListener('click', closeMenu);
+      mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mm.classList.contains('open')) closeMenu(); });
+    }
+
+    // ---------- Scroll reveal ----------
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+
+    // ---------- Count-up animation ----------
+    function fmtNum(n) { return n.toLocaleString('en-IN'); }
+    function animateCount(el) {
+      if (el.dataset.text) { el.textContent = el.dataset.text; return; }
+      var target = +el.dataset.count;
+      var pre = el.dataset.prefix || '';
+      var suf = el.dataset.suffix || '';
+      var dur = 1600, t0 = null;
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + fmtNum(Math.floor(ease * target)) + suf;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = pre + fmtNum(target) + suf;
+      }
+      requestAnimationFrame(step);
+    }
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+    // ---------- Auto-dismiss flash ----------
+    setTimeout(function () {
+      document.querySelectorAll('.flash').forEach(function (el) {
+        el.style.transition = 'opacity 0.5s';
+        el.style.opacity = '0';
+        setTimeout(function () { el.remove(); }, 500);
+      });
+    }, 5000);
+
+    // ---------- 3D tilt cards ----------
+    (function () {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      var tiltEls = document.querySelectorAll('.give-card, .gallery-item, .stat-card, .testimonial, .vol-role, .hero-img, .trust-card, .cert-card');
+      tiltEls.forEach(function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = 'perspective(900px) rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg) translateY(-6px)';
+        });
+        el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+      });
+      // Magnetic buttons
+      document.querySelectorAll('.btn-primary, .btn-teal, .btn-white').forEach(function (btn) {
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          btn.style.transform = 'translate(' + (x * 8) + 'px,' + (y * 8 - 3) + 'px)';
+        });
+        btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
+      });
+    })();
+
+    // ---------- Active nav link ----------
+    (function () {
+      var path = window.location.pathname;
+      document.querySelectorAll('.nav-links a, .footer-grid nav a').forEach(function (a) {
+        if (a.getAttribute('href') === path) {
+          a.setAttribute('aria-current', 'page');
+          a.classList.add('active');
+        }
+      });
+    })();
+
+    // Cookie consent handled by inline script above
+
+    // ---------- Newsletter ----------
+    function handleNewsletterSignup(e) {
+      e.preventDefault();
+      var input = document.getElementById('nl-email');
+      var btn   = e.target.querySelector('button');
+      var email = input ? input.value.trim() : '';
+      if (!email) return;
+
+      btn.textContent = 'Subscribing...';
+      btn.disabled    = true;
+
+      fetch('/api/newsletter', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email: email, source: 'footer' }),
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.success) {
+          btn.textContent  = '✓ Subscribed!';
+          input.value      = '';
+          btn.style.background = 'var(--teal)';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled    = false;
+          alert(data.message || 'Could not subscribe.');
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Error — retry';
+        btn.disabled    = false;
+      });
+    }
+  </script>
+</body>
+</html>
