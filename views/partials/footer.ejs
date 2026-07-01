@@ -116,10 +116,10 @@
   </footer>
 
   <!-- Cookie consent banner (minimal, non-intrusive) -->
-  <div id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:80;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r);padding:16px 24px;display:flex;align-items:center;gap:20px;box-shadow:var(--shadow-xl);max-width:600px;width:calc(100% - 40px);">
-    <p style="font-size:13.5px;color:var(--text-secondary);margin:0;flex:1;">We use cookies to improve your experience. <a href="/privacy" style="color:var(--orange);">Learn more</a></p>
+  <div id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--r);padding:16px 24px;align-items:center;gap:20px;box-shadow:var(--sh-xl);max-width:580px;width:calc(100% - 36px);">
+    <p style="font-size:13.5px;color:var(--text-2);margin:0;flex:1;">We use cookies to improve your experience. <a href="/privacy" style="color:var(--orange);">Learn more</a></p>
     <button onclick="acceptCookies()" class="btn btn-primary" style="padding:10px 20px;font-size:13px;white-space:nowrap;">Accept</button>
-    <button onclick="dismissCookies()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;line-height:1;" aria-label="Dismiss cookie banner">&times;</button>
+    <button onclick="dismissCookies()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:22px;line-height:1;" aria-label="Dismiss cookie banner">&times;</button>
   </div>
 
   <script>
@@ -231,15 +231,19 @@
 
     // ---------- Cookie consent ----------
     (function () {
-      if (!localStorage.getItem('cookieConsent')) {
-        var b = document.getElementById('cookieBanner');
-        if (b) { b.style.display = 'flex'; }
+      try {
+        if (!localStorage.getItem('cookieConsent')) {
+          var b = document.getElementById('cookieBanner');
+          if (b) { b.style.display = 'flex'; }
+        }
+      } catch(e) {
+        // localStorage blocked (private mode etc) — just hide banner
       }
     })();
     function acceptCookies() {
-      localStorage.setItem('cookieConsent', '1');
+      try { localStorage.setItem('cookieConsent', '1'); } catch(e) {}
       var b = document.getElementById('cookieBanner');
-      if (b) { b.style.opacity = '0'; b.style.transition = 'opacity 0.4s'; setTimeout(function () { b.remove(); }, 400); }
+      if (b) { b.style.opacity = '0'; b.style.transition = 'opacity 0.4s'; setTimeout(function () { b.style.display = 'none'; }, 400); }
     }
     function dismissCookies() { acceptCookies(); }
 
