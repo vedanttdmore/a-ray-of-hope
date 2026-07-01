@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: a-ray-of-hope
+    env: node
+    region: singapore   # closest to India
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Set these in Render dashboard → Environment:
+      - key: SESSION_SECRET
+        generateValue: true      # Render auto-generates a secure random value
+      - key: MONGODB_URI
+        sync: false              # You paste this from MongoDB Atlas
+      - key: RAZORPAY_KEY_ID
+        sync: false              # Your Razorpay test/live key
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: UPI_ID
+        sync: false              # Your NGO's UPI ID e.g. arayofhope@okicici

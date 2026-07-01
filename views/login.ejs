@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<div class="auth-page">
+  <div class="auth-visual">
+    <div style="position:relative; z-index:2;">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" style="margin-bottom:24px;">
+        <circle cx="12" cy="10" r="4" fill="#fff" stroke="none" opacity="0.9"/>
+        <line x1="12" y1="2" x2="12" y2="5"/><line x1="4.5" y1="5.5" x2="6.5" y2="7.5"/>
+        <line x1="19.5" y1="5.5" x2="17.5" y2="7.5"/>
+        <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+        <line x1="3" y1="22" x2="21" y2="22" stroke-width="1.5"/>
+      </svg>
+      <h2>Welcome back to the movement.</h2>
+      <p>Every login brings you closer to the children who need you.</p>
+    </div>
+  </div>
+  <div class="auth-form-side">
+    <div class="auth-form">
+      <a href="/" class="brand" style="margin-bottom:32px;">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="10" r="4" fill="currentColor" stroke="none" opacity="0.9"/>
+            <line x1="12" y1="2" x2="12" y2="5"/>
+            <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+          </svg>
+        </div>
+        A Ray of Hope
+      </a>
+
+      <h1>Log in</h1>
+      <p class="sub">Enter your credentials to access your account.</p>
+
+      <% if (locals.error && error.length) { %>
+        <% error.forEach(function(msg) { %>
+          <div class="flash flash-error" style="margin-bottom:20px;"><%= msg %></div>
+        <% }) %>
+      <% } %>
+      <% if (locals.success && success.length) { %>
+        <% success.forEach(function(msg) { %>
+          <div class="flash flash-success" style="margin-bottom:20px;"><%= msg %></div>
+        <% }) %>
+      <% } %>
+
+      <form method="POST" action="/login">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Your password" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:8px;">Log in <span class="arr">&rarr;</span></button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="/signup">Create one</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title><%= title %></title>
+  <meta name="description" content="<%= locals.metaDesc || 'A Ray of Hope — a child-first movement fighting hunger, poverty and child labour. Donate, volunteer, or start a chapter in your city.' %>" />
+  <meta name="keywords" content="NGO India, child welfare, donate India, volunteer Pune, child hunger, A Ray of Hope" />
+  <meta name="author" content="A Ray of Hope Foundation" />
+  <link rel="canonical" href="<%= locals.canonical || 'https://arayofhope.org' + (locals.path || '') %>" />
+
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="A Ray of Hope" />
+  <meta property="og:title" content="<%= title %>" />
+  <meta property="og:description" content="<%= locals.metaDesc || 'A child-first movement fighting hunger, poverty and child labour. Every rupee, every hour, every city — counts.' %>" />
+  <meta property="og:image" content="<%= locals.ogImage || 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80' %>" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="<%= locals.canonical || 'https://arayofhope.org' %>" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@arayofhope" />
+  <meta name="twitter:title" content="<%= title %>" />
+  <meta name="twitter:description" content="<%= locals.metaDesc || 'A child-first movement fighting hunger, poverty and child labour.' %>" />
+  <meta name="twitter:image" content="<%= locals.ogImage || 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80' %>" />
+
+  <!-- Theme & PWA basics -->
+  <meta name="theme-color" content="#FF6B2C" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- Favicon (inline SVG data URI) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='%23FF6B2C'/><circle cx='16' cy='13' r='5' fill='%23FFB627'/><line x1='16' y1='4' x2='16' y2='7' stroke='%23FFB627' stroke-width='2' stroke-linecap='round'/><line x1='8' y1='8' x2='10' y2='10' stroke='%23FFB627' stroke-width='2' stroke-linecap='round'/><line x1='24' y1='8' x2='22' y2='10' stroke='%23FFB627' stroke-width='2' stroke-linecap='round'/></svg>" />
+
+  <!-- JSON-LD Structured Data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "A Ray of Hope",
+    "url": "https://arayofhope.org",
+    "logo": "https://arayofhope.org/images/logo.png",
+    "description": "A child-first movement fighting hunger, poverty and child labour across India and beyond.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Near Ranka Jewellers",
+      "addressLocality": "Chinchwad",
+      "addressRegion": "Pune, Maharashtra",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-9764439124",
+      "email": "vedanttdmore@gmail.com",
+      "contactType": "customer support"
+    },
+    "sameAs": [
+      "https://twitter.com/arayofhope",
+      "https://instagram.com/arayofhope"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="top-bar" role="presentation" aria-hidden="true"></div>
+
+  <!-- Skip to main content (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="nav" id="nav" role="banner">
+    <div class="wrap nav-in">
+      <a href="/" class="brand" aria-label="A Ray of Hope — home">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="10" r="4" fill="currentColor" stroke="none" opacity="0.9"/>
+            <line x1="12" y1="2" x2="12" y2="5"/>
+            <line x1="4.5" y1="5.5" x2="6.5" y2="7.5"/>
+            <line x1="19.5" y1="5.5" x2="17.5" y2="7.5"/>
+            <line x1="2" y1="10" x2="5" y2="10"/>
+            <line x1="19" y1="10" x2="22" y2="10"/>
+            <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+            <line x1="3" y1="22" x2="21" y2="22" stroke-width="1.5"/>
+          </svg>
+        </div>
+        A Ray of Hope
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/" aria-current="<%= locals.page === 'home' ? 'page' : 'false' %>">Home</a>
+        <a href="/donate" aria-current="<%= locals.page === 'donate' ? 'page' : 'false' %>">Donate</a>
+        <a href="/volunteer" aria-current="<%= locals.page === 'volunteer' ? 'page' : 'false' %>">Volunteer</a>
+        <a href="/#impact">Impact</a>
+        <a href="/#stories">Stories</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-right">
+        <% if (locals.isLoggedIn && locals.user) { %>
+          <a href="/dashboard" class="nav-user" aria-label="Dashboard for <%= user.full_name %>">
+            <div class="avatar-sm" aria-hidden="true"><%= user.full_name.charAt(0).toUpperCase() %></div>
+            <%= user.full_name.split(' ')[0] %>
+          </a>
+        <% } else { %>
+          <a href="/login" class="btn btn-secondary" style="padding:10px 20px;font-size:13px;">Log in</a>
+          <a href="/signup" class="btn btn-primary" style="padding:10px 20px;font-size:13px;">Sign up</a>
+        <% } %>
+        <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true" focusable="false">
+            <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu" aria-modal="true" hidden>
+    <button class="mobile-menu-close" id="mobileClose" aria-label="Close navigation menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <nav aria-label="Mobile navigation">
+      <a href="/">Home</a>
+      <a href="/donate">Donate</a>
+      <a href="/volunteer">Volunteer</a>
+      <a href="/#impact">Impact</a>
+      <a href="/#faq">FAQ</a>
+      <% if (locals.isLoggedIn) { %>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Log out</a>
+      <% } else { %>
+        <a href="/login">Log in</a>
+        <a href="/signup" class="btn btn-primary" style="margin-top:8px;">Sign up</a>
+      <% } %>
+    </nav>
+  </div>
+
+  <!-- Toast flash messages (accessible) -->
+  <div role="alert" aria-live="polite" aria-atomic="true" style="position:fixed;top:80px;right:28px;z-index:90;max-width:400px;">
+    <% if (locals.flashError && flashError.length) { %>
+      <% flashError.forEach(function(msg) { %>
+        <div class="flash flash-error" role="alert">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          <%= msg %>
+        </div>
+      <% }) %>
+    <% } %>
+    <% if (locals.flashSuccess && flashSuccess.length) { %>
+      <% flashSuccess.forEach(function(msg) { %>
+        <div class="flash flash-success" role="status">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <%= msg %>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <main id="main-content">

@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Don't crawl authenticated / private areas
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /login
+Disallow: /signup
+Disallow: /logout
+Disallow: /donate/create-order
+Disallow: /donate/verify
+Disallow: /donate/upi-manual
+Disallow: /volunteer/pin-city
+Disallow: /volunteer/cities
+
+Sitemap: https://arayofhope.org/sitemap.xml

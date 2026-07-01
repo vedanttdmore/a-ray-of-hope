@@ -1,0 +1,660 @@
+<%- include('partials/header') %>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80" alt="Children smiling" />
+  </div>
+  <div class="hero-orb o1"></div>
+  <div class="hero-orb o2"></div>
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">A movement for every child's tomorrow</p>
+      <h1 style="margin-top:18px;">Every child deserves a <span class="highlight">ray of hope.</span></h1>
+      <p class="lead">Hunger, the streets, the brick kilns — these are not destiny. They are circumstances we can change, one child, one meal, one city at a time.</p>
+      <div class="hero-cta">
+        <a href="/donate" class="btn btn-primary btn-lg">Donate Now <span class="arr">&rarr;</span></a>
+        <a href="/volunteer" class="btn btn-secondary btn-lg">Become a Volunteer</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" data-count="2400000" data-suffix="+">0</div>
+          <div class="label">Meals Served</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="<%= stats.cities %>" data-suffix="">0</div>
+          <div class="label">Cities Reached</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="<%= stats.volunteers %>">0</div>
+          <div class="label">Volunteers</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-images rv" style="transition-delay:.15s">
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=600&q=80" alt="Child with bright smile" />
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80" alt="Helping hands reaching out" />
+      </div>
+      <div class="hero-badge">
+        <div class="badge-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="badge-num" data-count="38000" data-suffix="+">0</div>
+          <div class="badge-label">Children Supported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHOTO GALLERY ============ -->
+<section class="section section-white" id="gallery">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">On the Ground</p>
+      <h2>Moments that move us forward</h2>
+    </div>
+
+    <!-- TODO(backend): gallery items should come from GET /api/gallery (MongoDB collection `gallery`)
+         Each doc: { url, alt, caption, category, createdAt }. Categories below are placeholders. -->
+    <div class="gallery-filters rv">
+      <button class="gfilter-btn active" data-filter="all">All</button>
+      <button class="gfilter-btn" data-filter="education">Education</button>
+      <button class="gfilter-btn" data-filter="food">Food Drives</button>
+      <button class="gfilter-btn" data-filter="community">Community</button>
+      <button class="gfilter-btn" data-filter="volunteers">Volunteers</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item wide rv" data-cat="education">
+        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80" alt="Children studying in a classroom" />
+        <div class="overlay"><span>Education programs in Pune</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+      <div class="gallery-item rv" data-cat="food">
+        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=600&q=80" alt="Volunteers distributing food" />
+        <div class="overlay"><span>Weekend food drives</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+      <div class="gallery-item rv" data-cat="community">
+        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&q=80" alt="Helping hands" />
+        <div class="overlay"><span>Community support</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+      <div class="gallery-item rv" data-cat="education">
+        <img src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?w=600&q=80" alt="Children playing" />
+        <div class="overlay"><span>Joy in small moments</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+      <div class="gallery-item rv" data-cat="volunteers">
+        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80" alt="Volunteer team" />
+        <div class="overlay"><span>Our volunteer family</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+      <div class="gallery-item wide rv" data-cat="community">
+        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80" alt="Community gathering" />
+        <div class="overlay"><span>Community gatherings across India</span></div>
+        <div class="zoom-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox (shared by gallery clicks) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lightbox-prev" id="lbPrev" aria-label="Previous image">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div>
+    <img id="lbImg" src="" alt="" />
+    <p class="lightbox-cap" id="lbCap"></p>
+  </div>
+  <button class="lightbox-next" id="lbNext" aria-label="Next image">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<!-- ============ THE REALITY ============ -->
+
+<section class="section section-warm" id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The Reality</p>
+      <h2>Behind every statistic is a child waiting for change.</h2>
+      <p class="lead">We don't run on pity. We run on the simple belief that childhood is not negotiable — and that ordinary people, acting together, can make it real.</p>
+    </div>
+    <div class="stats-row" style="margin-top:48px;">
+      <div class="stat-card rv">
+        <div class="stat-icon orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stat-num" data-count="333" data-suffix="M">0</div>
+        <div class="stat-label">Children live in extreme poverty</div>
+      </div>
+      <div class="stat-card rv" style="transition-delay:.08s">
+        <div class="stat-icon teal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="stat-num" data-count="160" data-suffix="M">0</div>
+        <div class="stat-label">Children trapped in child labour</div>
+      </div>
+      <div class="stat-card rv" style="transition-delay:.16s">
+        <div class="stat-icon purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="stat-num" data-count="148" data-suffix="M">0</div>
+        <div class="stat-label">Under-fives stunted by hunger</div>
+      </div>
+      <div class="stat-card rv" style="transition-delay:.24s">
+        <div class="stat-icon gold">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="stat-num" data-text="₹40">₹40</div>
+        <div class="stat-label">Feeds one child for a full day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAYS TO GIVE (Preview) ============ -->
+<section class="section" id="give">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Ways to Give</p>
+      <h2>Three ways to put hope in a child's hands.</h2>
+    </div>
+    <div class="give-grid">
+      <div class="give-card rv">
+        <div class="card-icon">💰</div>
+        <h3>Donate Money</h3>
+        <p>Every rupee is converted into meals, school kits and medicine — tracked publicly so you see exactly where it lands.</p>
+        <div class="card-footer">Most flexible &middot; Fully traceable</div>
+      </div>
+      <div class="give-card rv" style="transition-delay:.08s">
+        <div class="card-icon">👕</div>
+        <h3>Give Clothes</h3>
+        <p>Warm, clean, wearable clothing for children and families. We sort, wash and distribute through local chapters.</p>
+        <div class="card-footer">Drop-off & pickup in <%= stats.cities %> cities</div>
+      </div>
+      <div class="give-card rv" style="transition-delay:.16s">
+        <div class="card-icon">🍚</div>
+        <h3>Give Food & Grains</h3>
+        <p>Rice, lentils, oil, and ready meals for kitchens and shelters. Non-perishable staples feed a family for weeks.</p>
+        <div class="card-footer">Bulk & corporate donations welcome</div>
+      </div>
+    </div>
+    <div class="text-center rv" style="margin-top:48px;">
+      <a href="/donate" class="btn btn-primary btn-lg">Go to Donation Page <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPACT / TRANSPARENCY ============ -->
+<section class="section section-warm" id="impact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Transparency</p>
+      <h2>Where every rupee goes.</h2>
+      <p class="lead">No black box. We publish our allocation because trust is earned, not assumed.</p>
+    </div>
+    <div class="impact-bar rv">
+      <div class="impact-seg" style="flex:72;background:var(--orange);">72% Programs</div>
+      <div class="impact-seg" style="flex:16;background:var(--gold);color:var(--text);">16% Logistics</div>
+      <div class="impact-seg" style="flex:12;background:var(--teal);">12% Ops</div>
+    </div>
+    <div class="impact-key rv">
+      <span><i style="background:var(--orange)"></i>Meals, education & medicine</span>
+      <span><i style="background:var(--gold)"></i>Transport & distribution</span>
+      <span><i style="background:var(--teal)"></i>Staff & admin</span>
+    </div>
+    <div class="stats-row" style="margin-top:56px;">
+      <div class="stat-card rv">
+        <div class="stat-num" data-count="2400000" data-suffix="+">0</div>
+        <div class="stat-label">Meals Served</div>
+      </div>
+      <div class="stat-card rv"><div class="stat-num" data-count="38000" data-suffix="+">0</div><div class="stat-label">Children Supported</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-count="<%= stats.cities %>">0</div><div class="stat-label">City Chapters</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-count="14">0</div><div class="stat-label">Countries</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST / WHY CHOOSE US ============ -->
+<!-- TODO(backend): registration number, certifications, and partner logos below are placeholders.
+     Replace with real values once the NGO provides registration documents. Suggested schema:
+     ngoMeta: { regNumber, regAuthority, panNumber, ngoDarpanId, eightyGCert, twelveACert } -->
+<section class="section section-warm" id="trust">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Why Trust Us</p>
+      <h2>Built for accountability, not just intentions.</h2>
+      <p class="lead" style="margin:14px auto 0;">We know asking for trust online is hard. Here's what we put in place so you don't have to take our word for it.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card rv">
+        <div class="trust-icon" style="background:var(--teal-light);color:var(--teal);">📋</div>
+        <h4>Registered Non-Profit</h4>
+        <p>Section 8 company, 80G &amp; 12A tax-exempt status.</p>
+      </div>
+      <div class="trust-card rv" style="transition-delay:.06s">
+        <div class="trust-icon" style="background:var(--orange-light);color:var(--orange);">🧾</div>
+        <h4>Audited Finances</h4>
+        <p>Annual reports reviewed by an independent CA firm.</p>
+      </div>
+      <div class="trust-card rv" style="transition-delay:.12s">
+        <div class="trust-icon" style="background:var(--purple-light);color:var(--purple);">🔒</div>
+        <h4>Secure Payments</h4>
+        <p>256-bit encrypted transactions via Razorpay.</p>
+      </div>
+      <div class="trust-card rv" style="transition-delay:.18s">
+        <div class="trust-icon" style="background:var(--gold-light);color:var(--gold);">📍</div>
+        <h4>On-Ground Presence</h4>
+        <p>Active city chapters with verifiable local leads.</p>
+      </div>
+    </div>
+
+    <!-- Registration info strip — PLACEHOLDER, replace with real NGO registration details -->
+    <div class="reg-strip rv">
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Reg. No. — <span class="ph-note">[PLACEHOLDER-REG-NUMBER]</span></span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 80G Certified — <span class="ph-note">[PLACEHOLDER-80G-ID]</span></span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> NGO Darpan ID — <span class="ph-note">[PLACEHOLDER-DARPAN-ID]</span></span>
+    </div>
+
+    <!-- Partners — PLACEHOLDER logos until real partner organizations are confirmed -->
+    <p class="text-center" style="margin-top:48px; font-size:13px; color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase;">Trusted alongside</p>
+    <div class="partners-row rv">
+      <div class="partner-chip">🤝 Partner Org A</div>
+      <div class="partner-chip">🏢 Partner Org B</div>
+      <div class="partner-chip">🎓 Partner Org C</div>
+      <div class="partner-chip">⚕️ Partner Org D</div>
+    </div>
+
+    <!-- Certifications / Awards — PLACEHOLDER -->
+    <div class="cert-row">
+      <div class="cert-card rv">
+        <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></div>
+        <div><h5>Community Impact Award</h5><p>[Placeholder — Year, Issuing Body]</p></div>
+      </div>
+      <div class="cert-card rv" style="transition-delay:.06s">
+        <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div><h5>ISO 9001 Certified</h5><p>[Placeholder — Certification body]</p></div>
+      </div>
+      <div class="cert-card rv" style="transition-delay:.12s">
+        <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div><h5>Guidestar India Verified</h5><p>[Placeholder — Verification ID]</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS (Carousel) ============ -->
+<!-- TODO(backend): Replace this static array with GET /api/testimonials (MongoDB collection `testimonials`).
+     Schema: { name, city, occupation, avatarUrl, rating (1-5), text, approved, createdAt }
+     These 5 testimonials are realistic PLACEHOLDER content, not real submissions. -->
+<section class="section" id="stories">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Voices</p>
+      <h2>The hope, in their words.</h2>
+    </div>
+
+    <div class="testi-carousel rv" style="max-width:780px; margin:48px auto 0;">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slide" data-slide="0">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80" alt="Aisha R." />
+          <div>
+            <div class="quote-mark">&ldquo;</div>
+            <div class="stars">★★★★★</div>
+            <p>I started a chapter in my hostel with four friends. Six months later we feed 200 kids every weekend. You don't need permission to begin — you just need to start.</p>
+            <div class="who-name">Aisha R.</div>
+            <div class="who-meta">Chapter Lead, Student &middot; Hyderabad</div>
+          </div>
+        </div>
+        <div class="testi-slide" data-slide="1">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=80" alt="Daniel K." />
+          <div>
+            <div class="quote-mark">&ldquo;</div>
+            <div class="stars">★★★★★</div>
+            <p>I donate ₹500 a month. It's one dinner out for me. For them it's a week of school meals. The math made the choice obvious, and the dashboard makes it easy to track.</p>
+            <div class="who-name">Daniel K.</div>
+            <div class="who-meta">Software Engineer, Monthly Donor &middot; Toronto</div>
+          </div>
+        </div>
+        <div class="testi-slide" data-slide="2">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=160&q=80" alt="Ravi M." />
+          <div>
+            <div class="quote-mark">&ldquo;</div>
+            <div class="stars">★★★★★</div>
+            <p>They gave me a meal, then a school bag, then a reason to dream bigger than the kiln I was born next to. Now I volunteer here on weekends, teaching kids who remind me of myself.</p>
+            <div class="who-name">Ravi M.</div>
+            <div class="who-meta">Former Beneficiary, now Volunteer &middot; Pune</div>
+          </div>
+        </div>
+        <div class="testi-slide" data-slide="3">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=160&q=80" alt="Meera S." />
+          <div>
+            <div class="quote-mark">&ldquo;</div>
+            <div class="stars">★★★★☆</div>
+            <p>As a working mother I never had time to volunteer in person. The clothes donation drive let me contribute from home, and I could track exactly which chapter received them.</p>
+            <div class="who-name">Meera S.</div>
+            <div class="who-meta">Marketing Manager, Donor &middot; Mumbai</div>
+          </div>
+        </div>
+        <div class="testi-slide" data-slide="4">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80" alt="Arjun P." />
+          <div>
+            <div class="quote-mark">&ldquo;</div>
+            <div class="stars">★★★★★</div>
+            <p>My college made volunteering here a campus tradition. Three years later we've run 40+ food drives. It started with one ambassador signup — that could be you.</p>
+            <div class="who-name">Arjun P.</div>
+            <div class="who-meta">Campus Ambassador &middot; Bengaluru</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-controls">
+        <button class="testi-arrow" id="testiPrev" aria-label="Previous testimonial">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="testi-nav" id="testiDots"></div>
+        <button class="testi-arrow" id="testiNext" aria-label="Next testimonial">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="placeholder-note">Sample testimonials shown for demonstration — to be replaced with verified submissions.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section-warm" id="faq">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Questions</p>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          Is my donation tax-deductible?
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">Yes. We are registered under Section 80G, so donations within India are eligible for tax deduction. You'll receive an emailed receipt immediately after payment that you can use for filing.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          How much of my donation actually reaches the cause?
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">72% goes directly to programs (meals, education, medicine). 16% covers logistics and distribution, and 12% covers core operations and staff. We publish this breakdown publicly — see our Transparency section above.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          Can I volunteer if I don't live in a city you operate in?
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">Yes — that's exactly how new chapters start. Use the "pin your city" tool on the Volunteer page, and our team will help you set up a chapter from scratch with a starter kit and mentor support.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          What payment methods do you accept?
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">Credit/debit cards, UPI, net banking, and wallets through Razorpay, plus direct UPI scan-and-pay if you prefer not to enter card details. International donors can pay via card in USD.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          Can I cancel a monthly donation anytime?
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">Yes, with no penalty. Manage or cancel your recurring donation anytime from your dashboard, or email us and we'll handle it within 24 hours.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ UPCOMING EVENTS ============ -->
+<!-- TODO(backend): Replace static cards with GET /api/events (MongoDB `events` collection).
+     Schema: { title, date, location, description, type, registrationUrl, seats } -->
+<section class="section section-soft" id="events">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">What's Happening</p>
+      <h2>Upcoming events</h2>
+      <p class="lead" style="margin:14px auto 0;">Join us on the ground. Every event is a chance to show a child they're not forgotten.</p>
+    </div>
+    <div class="give-grid" style="margin-top:40px;">
+      <div class="give-card rv">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--orange);background:var(--orange-light);border:1px solid rgba(255,107,44,0.25);padding:5px 12px;border-radius:100px;">Food Drive</span>
+          <span style="font-size:12px;color:var(--text-muted);">15 Aug 2026</span>
+        </div>
+        <h3 style="font-size:1.15rem;">Independence Day Mega Meal Drive</h3>
+        <p>Serving 5,000 meals across 8 locations in Pune. Volunteers, donors and sponsors all welcome.</p>
+        <div class="card-footer" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>📍 Chinchwad, Pune</span>
+          <a href="/volunteer" class="btn btn-primary" style="padding:9px 18px;font-size:13px;">Register</a>
+        </div>
+      </div>
+      <div class="give-card rv" style="transition-delay:.07s;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--purple);background:var(--purple-light);border:1px solid rgba(155,124,255,0.25);padding:5px 12px;border-radius:100px;">Education</span>
+          <span style="font-size:12px;color:var(--text-muted);">2 Sep 2026</span>
+        </div>
+        <h3 style="font-size:1.15rem;">Back-to-School Kit Distribution</h3>
+        <p>Distributing 1,200 school kits — bags, stationery, and books — to children at risk of dropping out.</p>
+        <div class="card-footer" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>📍 Pimpri &amp; Akurdi</span>
+          <a href="/donate" class="btn btn-primary" style="padding:9px 18px;font-size:13px;">Sponsor</a>
+        </div>
+      </div>
+      <div class="give-card rv" style="transition-delay:.14s;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--teal);background:var(--teal-light);border:1px solid rgba(24,227,194,0.25);padding:5px 12px;border-radius:100px;">Community</span>
+          <span style="font-size:12px;color:var(--text-muted);">20 Sep 2026</span>
+        </div>
+        <h3 style="font-size:1.15rem;">Chapter Leadership Summit</h3>
+        <p>All city chapter leads gather to share learnings, plan Q4 campaigns, and onboard new city ambassadors.</p>
+        <div class="card-footer" style="display:flex;align-items:center;justify-content:space-between;">
+          <span>📍 Pune (venue TBA)</span>
+          <a href="/volunteer" class="btn btn-primary" style="padding:9px 18px;font-size:13px;">Apply</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUCCESS STORIES ============ -->
+<!-- TODO(backend): Replace with GET /api/stories (MongoDB `successStories` collection).
+     Schema: { name, age, location, story, imageUrl, outcome, year } -->
+<section class="section" id="success-stories">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Success Stories</p>
+      <h2>Changed lives, in their own words.</h2>
+      <p class="lead" style="margin:14px auto 0;">These aren't statistics. These are people.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;">
+      <div class="give-card rv" style="flex-direction:row;gap:24px;align-items:flex-start;padding:28px;">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80" alt="Ravi's photo" style="width:72px;height:72px;border-radius:16px;object-fit:cover;flex:none;border:2px solid var(--border);" />
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <h4 style="font-size:1rem;">Ravi M.</h4>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--teal);background:var(--teal-light);padding:3px 10px;border-radius:100px;">Volunteer Now</span>
+          </div>
+          <p style="font-size:14.5px;color:var(--text-secondary);line-height:1.65;">Born next to a brick kiln in Pimpri, Ravi dropped out at age 8. A Ray of Hope's meal program brought him back to school. He graduated with distinction in 2024 and now leads weekend food drives.</p>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">Pune, Maharashtra &middot; 2022</p>
+        </div>
+      </div>
+      <div class="give-card rv" style="flex-direction:row;gap:24px;align-items:flex-start;padding:28px;transition-delay:.08s;">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80" alt="Priya's photo" style="width:72px;height:72px;border-radius:16px;object-fit:cover;flex:none;border:2px solid var(--border);" />
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <h4 style="font-size:1rem;">Priya N.</h4>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--purple);background:var(--purple-light);padding:3px 10px;border-radius:100px;">Chapter Lead</span>
+          </div>
+          <p style="font-size:14.5px;color:var(--text-secondary);line-height:1.65;">Priya's family survived on ₹80 a day. After receiving school kits and two years of meal support, she won a state merit scholarship. She started Hyderabad's largest chapter at 19.</p>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">Hyderabad, Telangana &middot; 2023</p>
+        </div>
+      </div>
+    </div>
+    <p class="placeholder-note" style="margin-top:28px;">Sample stories shown for demonstration — to be replaced with verified beneficiary stories from the NGO.</p>
+  </div>
+</section>
+
+<!-- ============ MEET THE TEAM ============ -->
+<!-- TODO(backend): Replace with GET /api/team (MongoDB `team` collection).
+     Schema: { name, role, bio, imageUrl, linkedIn, email, joinedYear } -->
+<section class="section section-warm" id="team">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">The Humans Behind It</p>
+      <h2>Meet our core team</h2>
+      <p class="lead" style="margin:14px auto 0;">Ordinary people running an extraordinary mission.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;">
+      <% [
+        { name:'Vedant More', role:'Founder & Director', city:'Pune', img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80', tag:'🌟' },
+        { name:'Aisha Rahman', role:'Operations Lead', city:'Hyderabad', img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80', tag:'🤝' },
+        { name:'Daniel K.', role:'Community & Growth', city:'Toronto', img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80', tag:'📣' },
+        { name:'Meera S.', role:'Partnerships', city:'Mumbai', img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80', tag:'💼' }
+      ].forEach(function(m, i) { %>
+        <div class="trust-card rv" style="text-align:center;padding:24px 20px;transition-delay:<%= i*0.07 %>s;">
+          <img src="<%= m.img %>" alt="<%= m.name %>" style="width:72px;height:72px;border-radius:20px;object-fit:cover;margin:0 auto 14px;border:2px solid var(--border);" />
+          <div style="font-size:18px;margin-bottom:8px;"><%= m.tag %></div>
+          <h4 style="font-size:1rem;margin-bottom:3px;"><%= m.name %></h4>
+          <p style="font-size:13px;color:var(--orange);font-weight:600;margin-bottom:6px;"><%= m.role %></p>
+          <p style="font-size:12.5px;color:var(--text-muted);">📍 <%= m.city %></p>
+        </div>
+      <% }) %>
+    </div>
+    <p class="placeholder-note" style="margin-top:28px;">Placeholder team profiles — replace with real team member details and photos.</p>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-banner rv">
+      <h2>We have a dream.<br/>Help us keep it alive.</h2>
+      <p class="lead">Whether it's ₹40 or forty volunteers in a new city — every act moves a child closer to the tomorrow they deserve.</p>
+      <div class="cta-btns">
+        <a href="/donate" class="btn btn-white btn-lg">Donate Now <span class="arr">&rarr;</span></a>
+        <a href="/volunteer" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;">Become a Volunteer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  // ----- Gallery filter -----
+  var gfilters = document.querySelectorAll('.gfilter-btn');
+  var gitems = document.querySelectorAll('#galleryGrid .gallery-item');
+  gfilters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      gfilters.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      gitems.forEach(function (it) {
+        it.classList.toggle('hidden', f !== 'all' && it.dataset.cat !== f);
+      });
+    });
+  });
+
+  // ----- Lightbox -----
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var visibleItems = function () { return Array.prototype.filter.call(gitems, function (it) { return !it.classList.contains('hidden'); }); };
+  var curIdx = 0;
+
+  function openLightbox(idx) {
+    var items = visibleItems();
+    if (!items.length) return;
+    curIdx = (idx + items.length) % items.length;
+    var img = items[curIdx].querySelector('img');
+    var cap = items[curIdx].querySelector('.overlay span');
+    lbImg.src = img.src.replace('w=600', 'w=1400').replace('w=800', 'w=1600');
+    lbImg.alt = img.alt;
+    lbCap.textContent = cap ? cap.textContent : img.alt;
+    lb.classList.add('open');
+  }
+  gitems.forEach(function (it, i) {
+    it.addEventListener('click', function () { openLightbox(Array.prototype.indexOf.call(gitems, it)); });
+  });
+  document.getElementById('lbClose').addEventListener('click', function () { lb.classList.remove('open'); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.classList.remove('open'); });
+  document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); openLightbox(curIdx - 1); });
+  document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); openLightbox(curIdx + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') lb.classList.remove('open');
+    if (e.key === 'ArrowLeft') openLightbox(curIdx - 1);
+    if (e.key === 'ArrowRight') openLightbox(curIdx + 1);
+  });
+
+  // ----- Testimonial carousel -----
+  var track = document.getElementById('testiTrack');
+  var slides = document.querySelectorAll('.testi-slide');
+  var dotsWrap = document.getElementById('testiDots');
+  var tIdx = 0, tTimer;
+
+  slides.forEach(function (s, i) {
+    var d = document.createElement('button');
+    d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+    d.addEventListener('click', function () { goTo(i); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = dotsWrap.querySelectorAll('.testi-dot');
+
+  function goTo(i) {
+    tIdx = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (tIdx * 100) + '%)';
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === tIdx); });
+    resetAutoplay();
+  }
+  function resetAutoplay() {
+    clearInterval(tTimer);
+    tTimer = setInterval(function () { goTo(tIdx + 1); }, 6000);
+  }
+  document.getElementById('testiPrev').addEventListener('click', function () { goTo(tIdx - 1); });
+  document.getElementById('testiNext').addEventListener('click', function () { goTo(tIdx + 1); });
+  track.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+  resetAutoplay();
+
+  // ----- FAQ accordion -----
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq-a').style.maxHeight = null;
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      q.setAttribute('aria-expanded', String(!isOpen));
+      a.style.maxHeight = isOpen ? null : a.scrollHeight + 'px';
+    });
+  });
+})();
+</script>
+
+<%- include('partials/footer') %>

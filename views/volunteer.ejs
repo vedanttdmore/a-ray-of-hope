@@ -1,0 +1,334 @@
+<%- include('partials/header') %>
+
+<section class="volunteer-hero">
+  <div class="wrap">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div class="rv">
+        <p class="eyebrow">Join the Movement</p>
+        <h1 style="margin-top:14px; font-size:clamp(2rem,5vw,3.4rem);">This dream belongs to your city too.</h1>
+        <p class="lead" style="margin-top:16px;">Giving is the start. The real change comes when someone picks up the dream and makes it their own. That's how a movement outgrows its founder.</p>
+        <div style="margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#apply" class="btn btn-primary btn-lg">Apply to Volunteer <span class="arr">&rarr;</span></a>
+          <a href="#roles" class="btn btn-secondary btn-lg">See Roles</a>
+        </div>
+      </div>
+      <div class="rv" style="transition-delay:.1s;">
+        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=700&q=80" alt="Volunteers working together" style="border-radius:var(--r-lg); box-shadow:var(--shadow-xl);" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOLUNTEER ROLES ============ -->
+<section class="section" id="roles">
+  <div class="wrap">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Choose Your Role</p>
+      <h2>Find where you fit in the mission</h2>
+    </div>
+    <div class="vol-roles" style="margin-top:40px;">
+      <div class="vol-role rv">
+        <div class="role-icon" style="background:var(--orange-light); color:var(--orange);">🏛️</div>
+        <h4>Chapter Lead</h4>
+        <p>Start and manage a local chapter. You'll get a starter kit, playbook and a mentor. Minimum 5 hrs/week commitment.</p>
+      </div>
+      <div class="vol-role rv" style="transition-delay:.06s;">
+        <div class="role-icon" style="background:var(--teal-light); color:var(--teal);">🤝</div>
+        <h4>Field Volunteer</h4>
+        <p>Join food drives, clothes collections and community events. Perfect for weekends. No experience needed, just heart.</p>
+      </div>
+      <div class="vol-role rv" style="transition-delay:.12s;">
+        <div class="role-icon" style="background:var(--purple-light); color:var(--purple);">🎓</div>
+        <h4>Campus Ambassador</h4>
+        <p>Represent A Ray of Hope at your college. Organize drives, recruit volunteers, and spread awareness on campus.</p>
+      </div>
+      <div class="vol-role rv" style="transition-delay:.18s;">
+        <div class="role-icon" style="background:var(--gold-light); color:#D99B00;">💰</div>
+        <h4>Donor & Fundraiser</h4>
+        <p>Help raise funds through personal campaigns, events, or corporate partnerships. Every connection counts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section-warm">
+  <div class="wrap">
+    <div class="vol-grid">
+      <div>
+        <div class="sec-head rv">
+          <p class="eyebrow">How It Works</p>
+          <h2>From sign-up to making a difference</h2>
+        </div>
+        <div class="steps-list">
+          <div class="step-item rv">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Fill the application</h4>
+              <p>Takes 2 minutes. Tell us who you are, where you are, and how you'd like to help.</p>
+            </div>
+          </div>
+          <div class="step-item rv" style="transition-delay:.06s;">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Get onboarded</h4>
+              <p>We reach out within 48 hours with your welcome kit, orientation, and a mentor connection.</p>
+            </div>
+          </div>
+          <div class="step-item rv" style="transition-delay:.12s;">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Rally your circle</h4>
+              <p>Friends, college, workplace — turn your network into a small force for good.</p>
+            </div>
+          </div>
+          <div class="step-item rv" style="transition-delay:.18s;">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Run your first drive</h4>
+              <p>A food drive, a clothes collection, a single sponsored child. Start small. Start real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Pin your city -->
+        <div class="pin-card rv" style="transition-delay:.1s;">
+          <div class="pin-count" id="pinCount"><%= cities.length + 16 %></div>
+          <p style="font-size:14.5px; color:var(--text-secondary); margin-top:6px;">cities already carrying the dream. Add yours.</p>
+          <form class="pin-form" id="pinForm">
+            <input id="pinInput" placeholder="Your city — e.g. Nairobi" />
+            <button class="btn btn-primary" type="submit">Pin it</button>
+          </form>
+          <div class="chips" id="citiesChips">
+            <% cities.forEach(function(c) { %>
+              <span class="chip"><%= c %></span>
+            <% }) %>
+          </div>
+        </div>
+
+        <!-- Volunteer count -->
+        <div class="pin-card rv" style="margin-top:24px; transition-delay:.15s; text-align:center;">
+          <div class="pin-count" data-count="<%= volunteerCount %>">0</div>
+          <p style="font-size:14.5px; color:var(--text-secondary); margin-top:6px;">volunteers and growing</p>
+          <div style="display:flex; gap:10px; justify-content:center; margin-top:18px;">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&q=80" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #fff; box-shadow:var(--shadow-sm);" alt="" />
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&q=80" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #fff; margin-left:-14px; box-shadow:var(--shadow-sm);" alt="" />
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=60&q=80" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #fff; margin-left:-14px; box-shadow:var(--shadow-sm);" alt="" />
+            <div style="width:36px; height:36px; border-radius:50%; background:var(--gradient); display:grid; place-items:center; color:#fff; font-size:11px; font-weight:700; margin-left:-14px; border:2px solid #fff;">+<%= volunteerCount - 3 %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOLUNTEER APPLICATION FORM ============ -->
+<section class="section" id="apply">
+  <div class="wrap" style="max-width:800px;">
+    <div class="sec-head text-center rv" style="margin:0 auto;">
+      <p class="eyebrow">Apply Now</p>
+      <h2>Become a Volunteer</h2>
+      <p class="lead" style="margin:12px auto 0;">Fill out the form below and we'll get back to you within 48 hours with your welcome kit and next steps.</p>
+    </div>
+
+    <div class="vol-form-card rv" style="margin-top:40px;" id="success">
+      <form action="/volunteer/apply" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vf-name">Full Name *</label>
+            <input id="vf-name" name="full_name" required placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label for="vf-email">Email *</label>
+            <input id="vf-email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vf-phone">Phone *</label>
+            <input id="vf-phone" name="phone" type="tel" required placeholder="+91 9876543210" />
+          </div>
+          <div class="form-group">
+            <label for="vf-city">City *</label>
+            <input id="vf-city" name="city" required placeholder="Your city" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vf-country">Country</label>
+            <input id="vf-country" name="country" value="India" placeholder="India" />
+          </div>
+          <div class="form-group">
+            <label for="vf-role">I want to help as</label>
+            <select id="vf-role" name="role_interest">
+              <option value="volunteer">Field Volunteer</option>
+              <option value="chapter_lead">Chapter Lead</option>
+              <option value="campus_ambassador">Campus Ambassador</option>
+              <option value="fundraiser">Donor & Fundraiser</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vf-avail">Availability</label>
+          <select id="vf-avail" name="availability">
+            <option value="weekends">Weekends only</option>
+            <option value="weekdays">Weekdays</option>
+            <option value="flexible">Flexible / Full-time</option>
+            <option value="remote">Remote only</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="vf-skills">Skills (optional)</label>
+          <input id="vf-skills" name="skills" placeholder="e.g. event planning, social media, cooking, teaching" />
+        </div>
+        <div class="form-group">
+          <label for="vf-motivation">Why do you want to volunteer? (optional)</label>
+          <textarea id="vf-motivation" name="motivation" rows="3" placeholder="Tell us what drives you..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:8px;">
+          Submit Application <span class="arr">&rarr;</span>
+        </button>
+        <p style="text-align:center; font-size:13px; color:var(--text-muted); margin-top:14px;">
+          We'll reach out within 48 hours. No obligations — just opportunity.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-banner rv">
+      <h2>Not ready to volunteer?<br/>You can still make a difference.</h2>
+      <p class="lead">A single donation feeds a child for a day. A monthly one changes their year.</p>
+      <div class="cta-btns">
+        <a href="/donate" class="btn btn-white btn-lg">Donate Instead <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pin city
+  document.getElementById('pinForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var input = document.getElementById('pinInput');
+    var city = input.value.trim();
+    if (!city) return;
+    try {
+      var res = await fetch('/volunteer/pin-city', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ city: city })
+      });
+      var data = await res.json();
+      input.value = '';
+      document.getElementById('pinCount').textContent = data.count + 16;
+      var chips = document.getElementById('citiesChips');
+      chips.innerHTML = '';
+      data.cities.forEach(function (c) {
+        var span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = c;
+        chips.appendChild(span);
+      });
+    } catch (err) { console.error(err); }
+  });
+</script>
+
+<!-- Form success box (shown after successful submission via JS redirect) -->
+<% if (locals.flashSuccess && flashSuccess.length) { %>
+<script>
+  // Scroll to success message on load
+  window.addEventListener('load', function () { document.getElementById('apply').scrollIntoView({ behavior: 'smooth' }); });
+</script>
+<% } %>
+
+<script>
+(function () {
+  'use strict';
+
+  var form = document.querySelector('#apply form');
+  if (!form) return;
+
+  // Field validation rules
+  var rules = {
+    full_name: { label: 'Full Name', minLen: 2 },
+    email:     { label: 'Email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, msg: 'Enter a valid email address' },
+    phone:     { label: 'Phone', pattern: /^[+\d\s\-]{7,15}$/, msg: 'Enter a valid phone number' },
+    city:      { label: 'City', minLen: 2 }
+  };
+
+  function getGroup(input) { return input.closest('.form-group'); }
+
+  function showError(input, msg) {
+    var g = getGroup(input);
+    if (!g) return;
+    g.classList.add('has-error');
+    var err = g.querySelector('.field-error');
+    if (!err) {
+      err = document.createElement('p');
+      err.className = 'field-error';
+      err.setAttribute('role', 'alert');
+      g.appendChild(err);
+    }
+    err.textContent = msg;
+    err.style.display = 'block';
+  }
+
+  function clearError(input) {
+    var g = getGroup(input);
+    if (!g) return;
+    g.classList.remove('has-error');
+    var err = g.querySelector('.field-error');
+    if (err) err.style.display = 'none';
+  }
+
+  function validateField(input) {
+    var name = input.name;
+    var val = input.value.trim();
+    var rule = rules[name];
+    if (!rule) return true;
+    if (!val) { showError(input, rule.label + ' is required.'); return false; }
+    if (rule.minLen && val.length < rule.minLen) { showError(input, rule.label + ' must be at least ' + rule.minLen + ' characters.'); return false; }
+    if (rule.pattern && !rule.pattern.test(val)) { showError(input, rule.msg); return false; }
+    clearError(input);
+    return true;
+  }
+
+  // Live validation on blur
+  Object.keys(rules).forEach(function (name) {
+    var input = form.querySelector('[name="' + name + '"]');
+    if (input) {
+      input.addEventListener('blur', function () { validateField(input); });
+      input.addEventListener('input', function () { if (getGroup(input).classList.contains('has-error')) validateField(input); });
+    }
+  });
+
+  // Submit with loading state
+  form.addEventListener('submit', function (e) {
+    var valid = true;
+    Object.keys(rules).forEach(function (name) {
+      var input = form.querySelector('[name="' + name + '"]');
+      if (input && !validateField(input)) valid = false;
+    });
+    if (!valid) {
+      e.preventDefault();
+      form.querySelector('.has-error input, .has-error select, .has-error textarea') && form.querySelector('.has-error input, .has-error select, .has-error textarea').focus();
+      return;
+    }
+    // Show loading state
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.7s linear infinite;display:inline-block;vertical-align:middle;margin-right:8px;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Submitting...';
+    }
+  });
+
+  // Pin city — already handled in volunteer.ejs inline script
+})();
+</script>
+
+<%- include('partials/footer') %>

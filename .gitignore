@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment (NEVER commit .env — put real secrets here)
+.env
+
+# SQLite database file
+database/*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build artifacts
+dist/
+.cache/

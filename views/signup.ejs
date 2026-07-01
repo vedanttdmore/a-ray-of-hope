@@ -1,0 +1,80 @@
+<%- include('partials/header') %>
+
+<div class="auth-page">
+  <div class="auth-visual">
+    <div style="position:relative; z-index:2;">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" style="margin-bottom:24px;">
+        <circle cx="12" cy="10" r="4" fill="#fff" stroke="none" opacity="0.9"/>
+        <line x1="12" y1="2" x2="12" y2="5"/><line x1="4.5" y1="5.5" x2="6.5" y2="7.5"/>
+        <line x1="19.5" y1="5.5" x2="17.5" y2="7.5"/>
+        <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+        <line x1="3" y1="22" x2="21" y2="22" stroke-width="1.5"/>
+      </svg>
+      <h2>Join the movement today.</h2>
+      <p>Create an account to donate, volunteer, and track your impact.</p>
+    </div>
+  </div>
+  <div class="auth-form-side">
+    <div class="auth-form">
+      <a href="/" class="brand" style="margin-bottom:32px;">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="10" r="4" fill="currentColor" stroke="none" opacity="0.9"/>
+            <line x1="12" y1="2" x2="12" y2="5"/>
+            <path d="M6 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.5"/>
+          </svg>
+        </div>
+        A Ray of Hope
+      </a>
+
+      <h1>Create account</h1>
+      <p class="sub">Join thousands making a difference, one child at a time.</p>
+
+      <% if (locals.error && error.length) { %>
+        <% error.forEach(function(msg) { %>
+          <div class="flash flash-error" style="margin-bottom:20px;"><%= msg %></div>
+        <% }) %>
+      <% } %>
+
+      <form method="POST" action="/signup">
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input type="text" id="full_name" name="full_name" required placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Your city" />
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" value="India" placeholder="India" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required minlength="6" placeholder="Min 6 characters" />
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" required placeholder="Repeat password" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:8px;">Create Account <span class="arr">&rarr;</span></button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="/login">Log in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

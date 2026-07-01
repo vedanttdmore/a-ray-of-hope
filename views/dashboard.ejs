@@ -1,0 +1,144 @@
+<%- include('partials/header') %>
+
+<section class="dash-page">
+  <div class="wrap">
+    <div class="dash-grid">
+      <!-- Sidebar -->
+      <div class="dash-sidebar">
+        <div class="dash-avatar"><%= user.full_name.charAt(0).toUpperCase() %></div>
+        <h3 style="font-size:1.2rem;"><%= user.full_name %></h3>
+        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;"><%= user.email %></p>
+        <% if (user.city) { %>
+          <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">📍 <%= user.city %><%= user.country ? ', ' + user.country : '' %></p>
+        <% } %>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">Member since <%= new Date(user.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) %></p>
+
+        <hr style="border:none; border-top:1px solid var(--border-light); margin:20px 0;" />
+
+        <nav style="display:flex; flex-direction:column; gap:8px;">
+          <a href="/dashboard" style="font-size:14.5px; font-weight:600; color:var(--orange);">Dashboard</a>
+          <a href="/donate" style="font-size:14.5px; color:var(--text-secondary);">Make a Donation</a>
+          <a href="/volunteer" style="font-size:14.5px; color:var(--text-secondary);">Volunteer</a>
+          <a href="/logout" style="font-size:14.5px; color:var(--coral); margin-top:8px;">Log out</a>
+        </nav>
+      </div>
+
+      <!-- Main content -->
+      <div class="dash-main">
+        <h2 style="font-size:1.6rem;">Welcome, <%= user.full_name.split(' ')[0] %> 👋</h2>
+
+        <!-- Stats -->
+        <div class="dash-stats">
+          <div class="dash-stat">
+            <div class="num">₹<%= totalDonated.toLocaleString('en-IN') %></div>
+            <div class="label">Total Donated</div>
+          </div>
+          <div class="dash-stat">
+            <div class="num"><%= donations.length %></div>
+            <div class="label">Donations</div>
+          </div>
+          <div class="dash-stat">
+            <div class="num"><%= volunteer ? '✓' : '—' %></div>
+            <div class="label">Volunteer Status</div>
+          </div>
+        </div>
+
+        <!-- Donation History -->
+        <div class="dash-card">
+          <h3>Donation History</h3>
+          <% if (donations.length > 0) { %>
+            <div style="overflow-x:auto;">
+              <table class="donation-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% donations.forEach(function(d) { %>
+                    <tr>
+                      <td><%= new Date(d.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) %></td>
+                      <td><strong><%= d.currency === 'INR' ? '₹' : '$' %><%= Number(d.amount).toLocaleString('en-IN') %></strong></td>
+                      <td style="text-transform:capitalize;"><%= d.method.replace('_', ' ') %></td>
+                      <td><span class="status-badge <%= d.status %>"><%= d.status %></span></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          <% } else { %>
+            <div style="text-align:center; padding:40px 20px; color:var(--text-muted);">
+              <p style="font-size:2rem; margin-bottom:12px;">🌱</p>
+              <p>No donations yet. Your first contribution makes all the difference.</p>
+              <a href="/donate" class="btn btn-primary" style="margin-top:16px;">Make Your First Donation</a>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Volunteer Status -->
+        <div class="dash-card">
+          <h3>Volunteer Status</h3>
+          <% if (volunteer) { %>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+              <div style="flex:1; min-width:200px;">
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">Role</p>
+                <p style="font-weight:600; text-transform:capitalize;"><%= volunteer.role_interest.replace('_', ' ') %></p>
+              </div>
+              <div style="flex:1; min-width:200px;">
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">City</p>
+                <p style="font-weight:600;"><%= volunteer.city %></p>
+              </div>
+              <div style="flex:1; min-width:200px;">
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">Status</p>
+                <span class="status-badge <%= volunteer.status === 'approved' ? 'paid' : 'pending' %>"><%= volunteer.status %></span>
+              </div>
+              <div style="flex:1; min-width:200px;">
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">Applied</p>
+                <p><%= new Date(volunteer.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) %></p>
+              </div>
+            </div>
+          <% } else { %>
+            <div style="text-align:center; padding:40px 20px; color:var(--text-muted);">
+              <p style="font-size:2rem; margin-bottom:12px;">🤝</p>
+              <p>You haven't applied to volunteer yet.</p>
+              <a href="/volunteer" class="btn btn-teal" style="margin-top:16px;">Apply to Volunteer</a>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Edit Profile -->
+        <div class="dash-card">
+          <h3>Edit Profile</h3>
+          <form method="POST" action="/profile/update">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input name="full_name" value="<%= user.full_name %>" required />
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input name="phone" value="<%= user.phone || '' %>" placeholder="+91 9876543210" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>City</label>
+                <input name="city" value="<%= user.city || '' %>" placeholder="Your city" />
+              </div>
+              <div class="form-group">
+                <label>Country</label>
+                <input name="country" value="<%= user.country || '' %>" placeholder="India" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:4px;">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

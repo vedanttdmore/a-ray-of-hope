@@ -1,0 +1,435 @@
+<%- include('partials/header') %>
+
+<section class="donate-hero">
+  <div class="hero-orb o1" style="top:-150px;right:-100px;"></div>
+  <div class="hero-orb o2" style="bottom:-100px;left:-80px;"></div>
+  <% if (locals.isTestMode) { %>
+  <div style="position:absolute;top:80px;left:50%;transform:translateX(-50%);z-index:10;background:rgba(255,182,39,0.15);border:1.5px solid rgba(255,182,39,0.4);color:var(--gold);padding:10px 24px;border-radius:100px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:0.06em;white-space:nowrap;">
+    ⚡ TEST MODE — Use card 4111 1111 1111 1111 · Any CVV · Any future date
+  </div>
+  <% } %>
+  <div class="wrap">
+    <p class="eyebrow rv">Every rupee counts</p>
+    <h1 class="rv" style="margin-top:14px; font-size:clamp(2rem,5vw,3.4rem);">Make a Donation</h1>
+    <p class="lead rv" style="margin:14px auto 0; text-align:center; max-width:50ch;">Your generosity feeds children, sends them to school, and builds futures. Choose how you'd like to give.</p>
+  </div>
+</section>
+
+<section style="padding:0 0 80px; position:relative; z-index:2;">
+  <div class="wrap" style="max-width:1060px;">
+    <div class="donate-layout">
+      <!-- Main donation card -->
+      <div class="donate-card rv">
+        <!-- Payment method tabs -->
+        <div class="payment-tabs" id="paymentTabs">
+          <button class="payment-tab active" data-tab="razorpay">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" rx="2" width="22" height="16"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Card / UPI / Net Banking
+          </button>
+          <button class="payment-tab" data-tab="upi">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" rx="2" width="18" height="18"/><path d="M7 7h.01M7 12h.01M7 17h.01M12 7h.01M12 12h.01M12 17h.01M17 7h.01M17 12h.01M17 17h.01"/></svg>
+            Scan & Pay (UPI)
+          </button>
+        </div>
+
+        <!-- TAB 1: Razorpay (Cards, UPI, Net Banking) -->
+        <div class="tab-content" id="tab-razorpay">
+          <h3 style="margin-bottom:4px;">Choose an amount</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:8px;">Select a preset or enter your own</p>
+
+          <!-- Currency toggle -->
+          <div class="freq-toggle" id="curToggle" style="margin-bottom:16px;">
+            <button class="freq-btn active" data-cur="INR">₹ INR</button>
+            <button class="freq-btn" data-cur="USD">$ USD</button>
+          </div>
+
+          <!-- Amount grid -->
+          <div class="amount-grid" id="amountGrid"></div>
+
+          <!-- Custom amount -->
+          <div class="custom-amount">
+            <span id="curSymbol">₹</span>
+            <input type="number" id="customAmount" inputmode="numeric" placeholder="Enter custom amount" />
+          </div>
+
+          <!-- Frequency -->
+          <div class="freq-toggle" id="freqToggle" style="margin-top:20px;">
+            <button class="freq-btn active" data-freq="once">One-time</button>
+            <button class="freq-btn" data-freq="month">Monthly</button>
+          </div>
+
+          <!-- Impact line -->
+          <p class="impact-text" id="impactLine" style="margin:16px 0;">Select an amount to see its impact.</p>
+
+          <!-- Optional message -->
+          <div class="form-group" style="margin-top:16px;">
+            <label>Message (optional)</label>
+            <input type="text" id="donateMessage" placeholder="Leave a kind note..." />
+          </div>
+          <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-secondary); margin-bottom:20px; cursor:pointer;">
+            <input type="checkbox" id="anonymousCheck" style="width:18px; height:18px; accent-color:var(--orange);" />
+            Donate anonymously
+          </label>
+
+          <!-- Pay button -->
+          <button class="btn btn-primary btn-block btn-lg" id="payBtn" onclick="initiatePayment()">
+            Donate ₹1,000
+          </button>
+          <p style="text-align:center; font-size:12px; color:var(--text-muted); margin-top:12px;">
+            🔒 Secure payment via Razorpay &middot; Tax-deductible &middot; Cancel anytime
+          </p>
+
+          <!-- Payment method icons -->
+          <div style="display:flex; justify-content:center; gap:16px; margin-top:20px; flex-wrap:wrap;">
+            <div style="padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-secondary); font-weight:600;">VISA</div>
+            <div style="padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-secondary); font-weight:600;">MasterCard</div>
+            <div style="padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-secondary); font-weight:600;">RuPay</div>
+            <div style="padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-secondary); font-weight:600;">UPI</div>
+            <div style="padding:8px 16px; border:1px solid var(--border); border-radius:8px; font-size:12px; color:var(--text-secondary); font-weight:600;">Net Banking</div>
+          </div>
+        </div>
+
+        <!-- TAB 2: UPI QR Code -->
+        <div class="tab-content" id="tab-upi" style="display:none;">
+          <div class="upi-section">
+            <h3>Scan to Pay via UPI</h3>
+            <p style="font-size:14.5px; color:var(--text-secondary); margin-top:8px;">
+              Open any UPI app and scan this QR code to donate directly.
+            </p>
+
+            <div class="qr-frame" id="qrFrame">
+              <img id="qrImg" alt="UPI QR Code" width="190" height="190" />
+            </div>
+
+            <div class="upi-id-display">
+              <span>UPI ID: <strong><%= upiId %></strong></span>
+              <button class="copy-btn" onclick="copyUPI()" title="Copy UPI ID">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+
+            <p style="font-size:13px; color:var(--text-muted); margin-top:16px;">Works with all UPI apps</p>
+            <div class="upi-apps">
+              <div class="upi-app-btn">📱 Google Pay</div>
+              <div class="upi-app-btn">📱 PhonePe</div>
+              <div class="upi-app-btn">📱 Paytm</div>
+              <div class="upi-app-btn">📱 BHIM</div>
+            </div>
+
+            <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border);">
+              <h4 style="font-size:1rem; margin-bottom:12px;">Already paid? Record your transaction</h4>
+              <div class="form-group">
+                <label>Amount Paid (₹)</label>
+                <input type="number" id="upiAmount" placeholder="e.g. 1000" />
+              </div>
+              <div class="form-group">
+                <label>UPI Transaction ID</label>
+                <input type="text" id="upiTxnId" placeholder="e.g. 123456789012" />
+              </div>
+              <button class="btn btn-teal btn-block" onclick="recordUPI()">
+                Submit UPI Payment Record
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="donate-sidebar rv" style="transition-delay:.1s">
+        <!-- Why donate card -->
+        <div class="donate-card" style="padding:28px;">
+          <h4 style="margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Your Impact
+          </h4>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:var(--orange-light); display:grid; place-items:center; flex:none; font-size:18px;">🍽️</div>
+              <div><strong style="font-size:14px;">₹40</strong><br/><span style="font-size:13px; color:var(--text-secondary);">Feeds one child for a day</span></div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:var(--teal-light); display:grid; place-items:center; flex:none; font-size:18px;">📚</div>
+              <div><strong style="font-size:14px;">₹500</strong><br/><span style="font-size:13px; color:var(--text-secondary);">A month of school meals</span></div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:var(--purple-light); display:grid; place-items:center; flex:none; font-size:18px;">🏫</div>
+              <div><strong style="font-size:14px;">₹2,500</strong><br/><span style="font-size:13px; color:var(--text-secondary);">Sponsors a child for a month</span></div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:var(--gold-light); display:grid; place-items:center; flex:none; font-size:18px;">🌟</div>
+              <div><strong style="font-size:14px;">₹10,000</strong><br/><span style="font-size:13px; color:var(--text-secondary);">Funds a month of community meals</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="donate-card" style="padding:28px;">
+          <h4 style="margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Your Trust Matters
+          </h4>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:var(--text-secondary);">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Registered non-profit (80G exempt)
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              72% goes directly to programs
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Publicly audited finances
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              256-bit encrypted payments
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent donors -->
+        <div class="donate-card" style="padding:28px;">
+          <h4 style="margin-bottom:14px;">Recent Supporters</h4>
+          <div id="recentDonors" style="display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--text-secondary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-light);">
+              <span>Anonymous</span><strong style="color:var(--text);">₹2,500</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-light);">
+              <span>Priya S.</span><strong style="color:var(--text);">₹1,000</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+              <span>Arjun M.</span><strong style="color:var(--text);">₹500</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Razorpay Checkout Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<script>
+(function () {
+  'use strict';
+
+  // ----- Config -----
+  var CUR = {
+    INR: { sym: '₹', pre: [101, 500, 1000, 2500, 5000, 10000], meal: 40 },
+    USD: { sym: '$', pre: [5, 15, 30, 60, 120, 250], meal: 0.5 }
+  };
+  var cur = 'INR', amount = 1000, freq = 'once';
+  var razorpayKey = '<%= razorpayKey %>';
+  var upiId = '<%= upiId %>';
+
+  // ----- Tab switching -----
+  document.getElementById('paymentTabs').addEventListener('click', function (e) {
+    var btn = e.target.closest('.payment-tab');
+    if (!btn) return;
+    var tab = btn.dataset.tab;
+    document.querySelectorAll('.payment-tab').forEach(function (t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function (c) { c.style.display = 'none'; });
+    document.getElementById('tab-' + tab).style.display = 'block';
+  });
+
+  // ----- Generate QR (Google Charts API — no library needed, works anywhere) -----
+  (function() {
+    var img = document.getElementById('qrImg');
+    if (!img || !upiId || upiId === 'arayofhope@upi') {
+      if (img) img.closest('.qr-frame').innerHTML = '<div style="padding:20px;text-align:center;color:#888;font-size:13px;">Set UPI_ID in .env<br>to show QR code</div>';
+      return;
+    }
+    var upiUrl = 'upi://pay?pa=' + encodeURIComponent(upiId) + '&pn=A+Ray+of+Hope&cu=INR';
+    img.src = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' + encodeURIComponent(upiUrl) + '&choe=UTF-8';
+    img.onerror = function() { img.closest('.qr-frame').innerHTML = '<div style="padding:20px;text-align:center;color:#888;font-size:13px;">QR unavailable offline</div>'; };
+  })();
+
+  // ----- Amount rendering -----
+  var amtGrid = document.getElementById('amountGrid');
+  var curSym = document.getElementById('curSymbol');
+  var customAmt = document.getElementById('customAmount');
+  var impactLine = document.getElementById('impactLine');
+  var payBtn = document.getElementById('payBtn');
+
+  var giftCopy = [
+    'provides a hot meal and clean water for',
+    'keeps a child in school meals for',
+    'feeds and clothes a child for',
+    'runs a weekend kitchen serving',
+    'sponsors a child\'s essentials for',
+    'funds a month of meals for'
+  ];
+
+  function money(n) {
+    return CUR[cur].sym + (cur === 'INR' ? n.toLocaleString('en-IN') : n.toLocaleString('en-US'));
+  }
+
+  function renderAmounts() {
+    amtGrid.innerHTML = '';
+    CUR[cur].pre.forEach(function (v) {
+      var meals = Math.max(1, Math.round(v / CUR[cur].meal));
+      var div = document.createElement('div');
+      div.className = 'amount-btn' + (v === amount ? ' active' : '');
+      div.innerHTML = '<div class="amt-value">' + money(v) + '</div><div class="amt-impact">' + meals + ' meals</div>';
+      div.addEventListener('click', function () {
+        amount = v;
+        customAmt.value = '';
+        sync();
+      });
+      amtGrid.appendChild(div);
+    });
+  }
+
+  function sync() {
+    document.querySelectorAll('.amount-btn').forEach(function (a) {
+      a.classList.toggle('active', a.querySelector('.amt-value').textContent === money(amount));
+    });
+    var meals = Math.max(1, Math.round(amount / CUR[cur].meal));
+    var idx = Math.min(giftCopy.length - 1, Math.floor(Math.log10(Math.max(amount, 1))));
+    impactLine.innerHTML = '<b>' + money(amount) + '</b> ' + giftCopy[idx] + ' <b>' + meals.toLocaleString('en-IN') + '</b> children' + (freq === 'month' ? ' — every month.' : '.');
+    payBtn.textContent = 'Donate ' + money(amount) + (freq === 'month' ? ' / month' : '');
+    curSym.textContent = CUR[cur].sym;
+  }
+
+  renderAmounts();
+  sync();
+
+  // Currency toggle
+  document.getElementById('curToggle').addEventListener('click', function (e) {
+    var b = e.target.closest('.freq-btn');
+    if (!b) return;
+    this.querySelectorAll('.freq-btn').forEach(function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    cur = b.dataset.cur;
+    if (CUR[cur].pre.indexOf(amount) === -1) amount = CUR[cur].pre[2];
+    customAmt.value = '';
+    renderAmounts();
+    sync();
+  });
+
+  // Frequency toggle
+  document.getElementById('freqToggle').addEventListener('click', function (e) {
+    var b = e.target.closest('.freq-btn');
+    if (!b) return;
+    this.querySelectorAll('.freq-btn').forEach(function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    freq = b.dataset.freq;
+    sync();
+  });
+
+  // Custom amount
+  customAmt.addEventListener('input', function () {
+    var v = parseInt(this.value, 10);
+    if (v > 0) amount = v;
+    sync();
+  });
+
+  // ----- Razorpay Payment -----
+  window.initiatePayment = async function () {
+    if (amount < 1) { alert('Please enter a valid amount.'); return; }
+
+    payBtn.disabled = true;
+    payBtn.textContent = 'Processing...';
+
+    try {
+      var res = await fetch('/donate/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: amount,
+          currency: cur,
+          frequency: freq,
+          message: document.getElementById('donateMessage').value,
+          anonymous: document.getElementById('anonymousCheck').checked
+        })
+      });
+
+      var data = await res.json();
+      if (data.error) { alert(data.error); payBtn.disabled = false; sync(); return; }
+
+      var options = {
+        key: data.key,
+        amount: data.amount,
+        currency: data.currency,
+        name: 'A Ray of Hope',
+        description: freq === 'month' ? 'Monthly Donation' : 'One-time Donation',
+        order_id: data.orderId,
+        handler: async function (response) {
+          var verifyRes = await fetch('/donate/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(response)
+          });
+          var result = await verifyRes.json();
+          if (result.success) {
+            payBtn.textContent = 'Thank you! 🧡';
+            payBtn.style.background = 'var(--teal)';
+            setTimeout(function () { window.location.reload(); }, 2000);
+          } else {
+            alert('Payment verification failed. Contact support.');
+          }
+        },
+        prefill: {},
+        theme: { color: '#FF6B2C' },
+        modal: { ondismiss: function () { payBtn.disabled = false; sync(); } }
+      };
+
+      var rzp = new Razorpay(options);
+      rzp.on('payment.failed', function () {
+        alert('Payment failed. Please try again.');
+        payBtn.disabled = false;
+        sync();
+      });
+      rzp.open();
+    } catch (err) {
+      alert('Could not initiate payment. Make sure Razorpay API keys are set in .env');
+      payBtn.disabled = false;
+      sync();
+    }
+  };
+
+  // ----- Record UPI payment -----
+  window.recordUPI = async function () {
+    var amt = document.getElementById('upiAmount').value;
+    var txn = document.getElementById('upiTxnId').value;
+    if (!amt || !txn) { alert('Please enter amount and transaction ID.'); return; }
+    try {
+      var res = await fetch('/donate/upi-manual', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: +amt, transaction_id: txn })
+      });
+      var data = await res.json();
+      alert(data.message);
+    } catch (e) {
+      alert('Could not record payment.');
+    }
+  };
+
+  // ----- Copy UPI ID -----
+  window.copyUPI = function () {
+    navigator.clipboard.writeText(upiId).then(function () {
+      alert('UPI ID copied!');
+    });
+  };
+
+  // ----- Load recent donors -----
+  fetch('/donate/recent').then(function (r) { return r.json(); }).then(function (donors) {
+    if (!donors.length) return;
+    var el = document.getElementById('recentDonors');
+    el.innerHTML = '';
+    donors.slice(0, 5).forEach(function (d, i) {
+      var div = document.createElement('div');
+      div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 0;' + (i < donors.length - 1 ? 'border-bottom:1px solid var(--border-light);' : '');
+      div.innerHTML = '<span>' + d.donor_name + '</span><strong style="color:var(--text);">' + (d.currency === 'INR' ? '₹' : '$') + Number(d.amount).toLocaleString('en-IN') + '</strong>';
+      el.appendChild(div);
+    });
+  }).catch(function () {});
+})();
+</script>
+
+<%- include('partials/footer') %>
