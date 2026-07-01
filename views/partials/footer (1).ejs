@@ -115,11 +115,25 @@
     </div>
   </footer>
 
-  <!-- Cookie consent banner (minimal, non-intrusive) -->
-  <div id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--r);padding:16px 24px;align-items:center;gap:20px;box-shadow:var(--sh-xl);max-width:580px;width:calc(100% - 36px);">
-    <p style="font-size:13.5px;color:var(--text-2);margin:0;flex:1;">We use cookies to improve your experience. <a href="/privacy" style="color:var(--orange);">Learn more</a></p>
-    <button onclick="acceptCookies()" class="btn btn-primary" style="padding:10px 20px;font-size:13px;white-space:nowrap;">Accept</button>
-    <button onclick="dismissCookies()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:22px;line-height:1;" aria-label="Dismiss cookie banner">&times;</button>
+  <!-- Cookie consent banner - pure CSS, no JS needed -->
+  <style>
+    #cb-toggle { display: none; }
+    #cb-toggle:checked ~ #cb-banner { display: none !important; }
+    #cb-banner {
+      display: flex; position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%); z-index: 9999;
+      background: #fff; border: 1.5px solid #E8E4F0;
+      border-radius: 16px; padding: 14px 20px;
+      align-items: center; gap: 16px;
+      box-shadow: 0 20px 60px rgba(26,26,46,0.12);
+      max-width: 560px; width: calc(100% - 32px);
+    }
+  </style>
+  <input type="checkbox" id="cb-toggle" />
+  <div id="cb-banner">
+    <p style="font-size:13.5px;color:#4A4A6A;margin:0;flex:1;">We use cookies to improve your experience.</p>
+    <label for="cb-toggle" style="background:linear-gradient(135deg,#FF5C1A,#F5A623);border:none;border-radius:100px;padding:9px 18px;color:#fff;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">Accept</label>
+    <label for="cb-toggle" style="background:none;border:none;color:#8888AA;cursor:pointer;font-size:22px;line-height:1;padding:0 4px;">&times;</label>
   </div>
 
   <script>
@@ -229,22 +243,7 @@
       });
     })();
 
-    // ---------- Cookie consent ----------
-    (function () {
-      var b = document.getElementById('cookieBanner');
-      if (!b) return;
-      // Show banner after 2 seconds
-      setTimeout(function() { b.style.display = 'flex'; }, 2000);
-    })();
-    function acceptCookies() {
-      var b = document.getElementById('cookieBanner');
-      if (!b) return;
-      b.style.transition = 'opacity 0.4s, transform 0.4s';
-      b.style.opacity = '0';
-      b.style.transform = 'translateX(-50%) translateY(20px)';
-      setTimeout(function () { b.style.display = 'none'; }, 400);
-    }
-    function dismissCookies() { acceptCookies(); }
+    // Cookie consent handled by inline script above
 
     // ---------- Newsletter ----------
     function handleNewsletterSignup(e) {
