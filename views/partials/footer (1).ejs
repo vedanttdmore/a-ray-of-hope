@@ -231,19 +231,18 @@
 
     // ---------- Cookie consent ----------
     (function () {
-      try {
-        if (!localStorage.getItem('cookieConsent')) {
-          var b = document.getElementById('cookieBanner');
-          if (b) { b.style.display = 'flex'; }
-        }
-      } catch(e) {
-        // localStorage blocked (private mode etc) — just hide banner
-      }
+      var b = document.getElementById('cookieBanner');
+      if (!b) return;
+      // Show banner after 2 seconds
+      setTimeout(function() { b.style.display = 'flex'; }, 2000);
     })();
     function acceptCookies() {
-      try { localStorage.setItem('cookieConsent', '1'); } catch(e) {}
       var b = document.getElementById('cookieBanner');
-      if (b) { b.style.opacity = '0'; b.style.transition = 'opacity 0.4s'; setTimeout(function () { b.style.display = 'none'; }, 400); }
+      if (!b) return;
+      b.style.transition = 'opacity 0.4s, transform 0.4s';
+      b.style.opacity = '0';
+      b.style.transform = 'translateX(-50%) translateY(20px)';
+      setTimeout(function () { b.style.display = 'none'; }, 400);
     }
     function dismissCookies() { acceptCookies(); }
 
