@@ -180,5 +180,4 @@ When you're ready to accept real money (after NGO registration):
 
 ## 📞 Contact
 
-**Vedant More** — vedanttdmore@gmail.com · +91 97644 39124  
-Near Ranka Jewellers, Chinchwad, Pune 411033
+**Vedant More** — vedanttdmore@gmail.com ·   
